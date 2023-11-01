@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.11.3 on win32)" generated="20231031 17:33:44.800" rpa="false" schemaversion="3">
+<suite id="s1" name="Uploading File" source="C:\Users\Badigi Shilpa-2877\PycharmProjects\Altius_Hub_Project_API's\Integration_Mgmt\uploading_file.robot">
+<test id="s1-t1" name="Upload XLSX File Test" line="36">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>post_01</arg>
+<arg>${Altius_Hub_Base_Url}</arg>
+<arg>verify=${TRUE}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231031 17:33:44.898" level="INFO">Creating Session using : alias=post_01, url=https://nbee96jmfc.execute-api.ap-south-1.amazonaws.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231031 17:33:44.898" endtime="20231031 17:33:44.898"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>Authorization=${TOKEN}</arg>
+<arg>Content-Type=multipart/form-data</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20231031 17:33:44.898" level="INFO">${headers} = {'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJrZWVydGhpc2FnYXIuYUBoZXRlcm9kcnVncy5jb20iLCJleHAiOjE3MTM4NjUzODh9.1AZYH1EYJod9Br6z_pNdv3K0NZ0LtdT3e_1J...</msg>
+<status status="PASS" starttime="20231031 17:33:44.898" endtime="20231031 17:33:44.898"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${multipart}</var>
+<arg>csv_file=${FILE_PATH}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20231031 17:33:44.898" level="INFO">${multipart} = {'csv_file': 'C:UsersBadigi Shilpa-2877DownloadsUpload.csv'}</msg>
+<status status="PASS" starttime="20231031 17:33:44.898" endtime="20231031 17:33:44.898"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${data}</var>
+<arg>key3=${multipart}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20231031 17:33:44.898" level="INFO">${data} = {'key3': {'csv_file': 'C:UsersBadigi Shilpa-2877DownloadsUpload.csv'}}</msg>
+<status status="PASS" starttime="20231031 17:33:44.898" endtime="20231031 17:33:44.898"/>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>post_01</arg>
+<arg>/mah/api/principle_database/upload-csv-mah</arg>
+<arg>headers=${headers}</arg>
+<arg>data=${data}</arg>
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<msg timestamp="20231031 17:33:44.898" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg timestamp="20231031 17:33:45.111" level="INFO">POST Request : url=https://nbee96jmfc.execute-api.ap-south-1.amazonaws.com/mah/api/principle_database/upload-csv-mah 
+ path_url=/mah/api/principle_database/upload-csv-mah 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJrZWVydGhpc2FnYXIuYUBoZXRlcm9kcnVncy5jb20iLCJleHAiOjE3MTM4NjUzODh9.1AZYH1EYJod9Br6z_pNdv3K0NZ0LtdT3e_1JQK2hPW4', 'Content-Type': 'multipart/form-data', 'Content-Length': '13'} 
+ body=key3=csv_file 
+ </msg>
+<msg timestamp="20231031 17:33:45.111" level="INFO">POST Response : url=https://nbee96jmfc.execute-api.ap-south-1.amazonaws.com/mah/api/principle_database/upload-csv-mah 
+ status=400, reason=Bad Request 
+ headers={'Date': 'Tue, 31 Oct 2023 12:03:40 GMT', 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': '143', 'Connection': 'keep-alive', 'server': 'nginx/1.18.0 (Ubuntu)', 'apigw-requestid': 'Nqn8ki-PhcwEM7w=', 'vary': 'origin', 'x-content-type-options': 'nosniff', 'referrer-policy': 'same-origin', 'Cross-Origin-Opener-Policy': 'same-origin'} 
+ body=
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;title&gt;Bad Request (400)&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Bad Request (400)&lt;/h1&gt;&lt;p&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+ 
+ </msg>
+<msg timestamp="20231031 17:33:45.111" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20231031 17:33:44.898" endtime="20231031 17:33:45.111"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20231031 17:33:45.124" endtime="20231031 17:33:45.140"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20231031 17:33:45.141" endtime="20231031 17:33:45.141"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20231031 17:33:45.141" level="INFO">${status_code} = 400</msg>
+<status status="PASS" starttime="20231031 17:33:45.141" endtime="20231031 17:33:45.141"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>200</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<msg timestamp="20231031 17:33:45.141" level="FAIL">400 != 200</msg>
+<status status="FAIL" starttime="20231031 17:33:45.141" endtime="20231031 17:33:45.141"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231031 17:33:45.141" endtime="20231031 17:33:45.141"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>true</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231031 17:33:45.141" endtime="20231031 17:33:45.141"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>Processed 2 records</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231031 17:33:45.141" endtime="20231031 17:33:45.141"/>
+</kw>
+<status status="FAIL" starttime="20231031 17:33:44.898" endtime="20231031 17:33:45.141">400 != 200</status>
+</test>
+<status status="FAIL" starttime="20231031 17:33:44.805" endtime="20231031 17:33:45.141"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Uploading File">Uploading File</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20231031 17:33:44.898" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+</errors>
+</robot>

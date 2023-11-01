@@ -1,0 +1,1080 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.11.3 on win32)" generated="20231101 20:11:20.759" rpa="false" schemaversion="3">
+<suite id="s1" name="MAH Login API" source="C:\Users\Badigi Shilpa-2877\PycharmProjects\Altius_Hub_Project_API's\Testcases_Onboarding\MAH_Login_API.robot">
+<test id="s1-t1" name="case1:Sign with positive flow" line="14">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>post_01</arg>
+<arg>${Altius_Hub_Base_Url}</arg>
+<arg>verify=${TRUE}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231101 20:11:21.019" level="INFO">Creating Session using : alias=post_01, url=https://nbee96jmfc.execute-api.ap-south-1.amazonaws.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20231101 20:11:21.019" endtime="20231101 20:11:21.019"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>username=keerthisagar.a@heterodrugs.com</arg>
+<arg>password=Altius@123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20231101 20:11:21.019" level="INFO">${body} = {'username': 'keerthisagar.a@heterodrugs.com', 'password': 'Altius@123'}</msg>
+<status status="PASS" starttime="20231101 20:11:21.019" endtime="20231101 20:11:21.019"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20231101 20:11:21.029" level="INFO">${header} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20231101 20:11:21.029" endtime="20231101 20:11:21.029"/>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>post_01</arg>
+<arg>/mah/api/principle_database/mah-login</arg>
+<arg>data=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<msg timestamp="20231101 20:11:21.029" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg timestamp="20231101 20:11:21.689" level="INFO">POST Request : url=https://nbee96jmfc.execute-api.ap-south-1.amazonaws.com/mah/api/principle_database/mah-login 
+ path_url=/mah/api/principle_database/mah-login 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '72'} 
+ body={"username": "keerthisagar.a@heterodrugs.com", "password": "Altius@123"} 
+ </msg>
+<msg timestamp="20231101 20:11:21.689" level="INFO">POST Response : url=https://nbee96jmfc.execute-api.ap-south-1.amazonaws.com/mah/api/principle_database/mah-login 
+ status=200, reason=OK 
+ headers={'Date': 'Wed, 01 Nov 2023 14:41:17 GMT', 'Content-Type': 'application/json', 'Content-Length': '535', 'Connection': 'keep-alive', 'server': 'nginx/1.18.0 (Ubuntu)', 'apigw-requestid': 'NuR-GhWThcwEMaA=', 'allow': 'POST, OPTIONS', 'x-frame-options': 'DENY', 'vary': 'origin', 'x-content-type-options': 'nosniff', 'referrer-policy': 'same-origin', 'Cross-Origin-Opener-Policy': 'same-origin'} 
+ body={"status":true,"message":"Login in Successfully","data":{"login_id":"keerthisagar.a@heterodrugs.com","x-access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJrZWVydGhpc2FnYXIuYUBoZXRlcm9kcnVncy5jb20iLCJleHAiOjE3MTQ0MDE2Nzd9.L9d5JGUdrf43TzWIzikjIxeYvM36XGachvGq3bGyXtQ","first_time_login":false,"user_role":"master_admin","mah_id":1,"user_entity_type":"organization","username":"Keerthi sagar Sagar","password_expiry_date":null,"mah_name":"HETERO LABS LIMITED","primary_id":"0234567890123","logo":null}} 
+ </msg>
+<msg timestamp="20231101 20:11:21.689" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20231101 20:11:21.029" endtime="20231101 20:11:21.689"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20231101 20:11:21.689" endtime="20231101 20:11:21.689"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20231101 20:11:21.689" endtime="20231101 20:11:21.699"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20231101 20:11:21.699" level="INFO">${status_code} = 200</msg>
+<status status="PASS" starttime="20231101 20:11:21.699" endtime="20231101 20:11:21.699"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>200</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20231101 20:11:21.699" endtime="20231101 20:11:21.699"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20231101 20:11:21.699" level="INFO">${res_body} = {"status":true,"message":"Login in Successfully","data":{"login_id":"keerthisagar.a@heterodrugs.com","x-access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJrZWVydGhp...</msg>
+<status status="PASS" starttime="20231101 20:11:21.699" endtime="20231101 20:11:21.699"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>true</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231101 20:11:21.699" endtime="20231101 20:11:21.699"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>Login in Successfully</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231101 20:11:21.699" endtime="20231101 20:11:21.699"/>
+</kw>
+<status status="PASS" starttime="20231101 20:11:21.019" endtime="20231101 20:11:21.699"/>
+</test>
+<test id="s1-t2" name="case2:Sign with positive flow(with invalid method name)" line="28">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>post_01</arg>
+<arg>${Popial_Base_Url}</arg>
+<arg>verify=${TRUE}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231101 20:11:21.699" level="FAIL">Variable '${Popial_Base_Url}' not found.</msg>
+<status status="FAIL" starttime="20231101 20:11:21.699" endtime="20231101 20:11:21.699"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>username=keerthisagar.a@heterodrugs.com</arg>
+<arg>password=Altius@123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.699" endtime="20231101 20:11:21.699"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.699" endtime="20231101 20:11:21.699"/>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>post_01</arg>
+<arg>/mah/api/principle_database/mah-login</arg>
+<arg>data=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>*DEPRECATED* Please use `GET On Session` instead.</doc>
+<msg timestamp="20231101 20:11:21.699" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+<status status="NOT RUN" starttime="20231101 20:11:21.699" endtime="20231101 20:11:21.699"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.699" endtime="20231101 20:11:21.699"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.699" endtime="20231101 20:11:21.699"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.699" endtime="20231101 20:11:21.699"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>405</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.699" endtime="20231101 20:11:21.699"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.699" endtime="20231101 20:11:21.699"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>detail</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.699" endtime="20231101 20:11:21.699"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>Method \\"GET\\" not allowed.</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.699" endtime="20231101 20:11:21.699"/>
+</kw>
+<status status="FAIL" starttime="20231101 20:11:21.699" endtime="20231101 20:11:21.705">Variable '${Popial_Base_Url}' not found.</status>
+</test>
+<test id="s1-t3" name="case3:Without Email parameter" line="42">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>post_01</arg>
+<arg>${Popial_Base_Url}</arg>
+<arg>verify=${TRUE}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231101 20:11:21.706" level="FAIL">Variable '${Popial_Base_Url}' not found.</msg>
+<status status="FAIL" starttime="20231101 20:11:21.706" endtime="20231101 20:11:21.706"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>password=Altius@123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.706" endtime="20231101 20:11:21.706"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.706" endtime="20231101 20:11:21.706"/>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>post_01</arg>
+<arg>/mah/api/principle_database/mah-login</arg>
+<arg>data=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<msg timestamp="20231101 20:11:21.706" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<status status="NOT RUN" starttime="20231101 20:11:21.706" endtime="20231101 20:11:21.706"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.706" endtime="20231101 20:11:21.706"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.706" endtime="20231101 20:11:21.706"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.709"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>400</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.709"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.709"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>false</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.709"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>Please enter the email field.</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.709"/>
+</kw>
+<status status="FAIL" starttime="20231101 20:11:21.706" endtime="20231101 20:11:21.709">Variable '${Popial_Base_Url}' not found.</status>
+</test>
+<test id="s1-t4" name="Case4:Without password parameter" line="56">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>post_01</arg>
+<arg>${Popial_Base_Url}</arg>
+<arg>verify=${TRUE}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231101 20:11:21.709" level="FAIL">Variable '${Popial_Base_Url}' not found.</msg>
+<status status="FAIL" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.709"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>username=keerthisagar.a@heterodrugs.com</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.709"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.709"/>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>post_01</arg>
+<arg>/mah/api/principle_database/mah-login</arg>
+<arg>data=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<msg timestamp="20231101 20:11:21.709" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<status status="NOT RUN" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.709"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.709"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.709"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.709"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>400</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.709"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.709"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>false</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.709"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>"\\"password\\" is required"</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.709"/>
+</kw>
+<status status="FAIL" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.709">Variable '${Popial_Base_Url}' not found.</status>
+</test>
+<test id="s1-t5" name="case5:Email with Empty field" line="70">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>post_01</arg>
+<arg>${Popial_Base_Url}</arg>
+<arg>verify=${TRUE}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231101 20:11:21.709" level="FAIL">Variable '${Popial_Base_Url}' not found.</msg>
+<status status="FAIL" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.709"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>username=${EMPTY}</arg>
+<arg>password=Altius@123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.709"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.709"/>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>post_01</arg>
+<arg>/mah/api/principle_database/mah-login</arg>
+<arg>data=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<msg timestamp="20231101 20:11:21.709" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<status status="NOT RUN" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.709"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.719" endtime="20231101 20:11:21.719"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.719" endtime="20231101 20:11:21.719"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.719" endtime="20231101 20:11:21.719"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>400</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.719" endtime="20231101 20:11:21.719"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.719" endtime="20231101 20:11:21.719"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>false</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.719" endtime="20231101 20:11:21.719"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>Please enter an email ID.</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.719" endtime="20231101 20:11:21.719"/>
+</kw>
+<status status="FAIL" starttime="20231101 20:11:21.709" endtime="20231101 20:11:21.719">Variable '${Popial_Base_Url}' not found.</status>
+</test>
+<test id="s1-t6" name="case6:Password fields with empty" line="84">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>post_01</arg>
+<arg>${Popial_Base_Url}</arg>
+<arg>verify=${TRUE}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231101 20:11:21.722" level="FAIL">Variable '${Popial_Base_Url}' not found.</msg>
+<status status="FAIL" starttime="20231101 20:11:21.722" endtime="20231101 20:11:21.722"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>username=keerthisagar.a@heterodrugs.com</arg>
+<arg>password=${EMPTY}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.722" endtime="20231101 20:11:21.722"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.722" endtime="20231101 20:11:21.722"/>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>post_01</arg>
+<arg>/mah/api/principle_database/mah-login</arg>
+<arg>data=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<msg timestamp="20231101 20:11:21.722" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<status status="NOT RUN" starttime="20231101 20:11:21.722" endtime="20231101 20:11:21.722"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.722" endtime="20231101 20:11:21.722"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.722" endtime="20231101 20:11:21.722"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.722" endtime="20231101 20:11:21.722"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>400</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.722" endtime="20231101 20:11:21.722"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.722" endtime="20231101 20:11:21.722"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>false</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.722" endtime="20231101 20:11:21.722"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>Password is required</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.722" endtime="20231101 20:11:21.722"/>
+</kw>
+<status status="FAIL" starttime="20231101 20:11:21.719" endtime="20231101 20:11:21.722">Variable '${Popial_Base_Url}' not found.</status>
+</test>
+<test id="s1-t7" name="case7:Email with only numbers" line="98">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>post_01</arg>
+<arg>${Popial_Base_Url}</arg>
+<arg>verify=${TRUE}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231101 20:11:21.729" level="FAIL">Variable '${Popial_Base_Url}' not found.</msg>
+<status status="FAIL" starttime="20231101 20:11:21.722" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>username=32456789@terralogic.com</arg>
+<arg>password=Altius@123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>post_01</arg>
+<arg>/mah/api/principle_database/mah-login</arg>
+<arg>data=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<msg timestamp="20231101 20:11:21.729" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>400</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>false</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>email Pattern is missing</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<status status="FAIL" starttime="20231101 20:11:21.722" endtime="20231101 20:11:21.729">Variable '${Popial_Base_Url}' not found.</status>
+</test>
+<test id="s1-t8" name="case8:Email with single character" line="112">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>post_01</arg>
+<arg>${Popial_Base_Url}</arg>
+<arg>verify=${TRUE}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231101 20:11:21.729" level="FAIL">Variable '${Popial_Base_Url}' not found.</msg>
+<status status="FAIL" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>username=k@heterodrugs.com</arg>
+<arg>password=Altius@123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>post_01</arg>
+<arg>/mah/api/principle_database/mah-login</arg>
+<arg>data=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<msg timestamp="20231101 20:11:21.729" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>400</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>false</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>email Pattern is missing</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<status status="FAIL" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729">Variable '${Popial_Base_Url}' not found.</status>
+</test>
+<test id="s1-t9" name="case9:Domain validations in Email field" line="126">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>post_01</arg>
+<arg>${Popial_Base_Url}</arg>
+<arg>verify=${TRUE}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231101 20:11:21.729" level="FAIL">Variable '${Popial_Base_Url}' not found.</msg>
+<status status="FAIL" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>username=keerthisagar.aheterodrugs.com</arg>
+<arg>password=Altius@123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>post_01</arg>
+<arg>/mah/api/principle_database/mah-login</arg>
+<arg>data=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<msg timestamp="20231101 20:11:21.729" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.729"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.738" endtime="20231101 20:11:21.738"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.738" endtime="20231101 20:11:21.738"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>400</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.738" endtime="20231101 20:11:21.738"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.738" endtime="20231101 20:11:21.738"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>false</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.738" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>email Pattern is missing</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<status status="FAIL" starttime="20231101 20:11:21.729" endtime="20231101 20:11:21.739">Variable '${Popial_Base_Url}' not found.</status>
+</test>
+<test id="s1-t10" name="case10:with old password after resetting" line="140">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>post_01</arg>
+<arg>${Popial_Base_Url}</arg>
+<arg>verify=${TRUE}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231101 20:11:21.739" level="FAIL">Variable '${Popial_Base_Url}' not found.</msg>
+<status status="FAIL" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>username=keerthisagar.a@heterodrugs.com</arg>
+<arg>password=Altius@123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>post_01</arg>
+<arg>/mah/api/principle_database/mah-login</arg>
+<arg>data=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<msg timestamp="20231101 20:11:21.739" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>400</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>false</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>The entered password is incorrect</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<status status="FAIL" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739">Variable '${Popial_Base_Url}' not found.</status>
+</test>
+<test id="s1-t11" name="case11:Space between the email_id" line="154">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>post_01</arg>
+<arg>${Popial_Base_Url}</arg>
+<arg>verify=${TRUE}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231101 20:11:21.739" level="FAIL">Variable '${Popial_Base_Url}' not found.</msg>
+<status status="FAIL" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>username=keer${SPACE}${SPACE}thisagar.a@het${SPACE}${SPACE}erodrugs.com</arg>
+<arg>password=Altius@123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>post_01</arg>
+<arg>/mah/api/principle_database/mah-login</arg>
+<arg>data=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<msg timestamp="20231101 20:11:21.739" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>400</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>false</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>please provide correct email.</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<status status="FAIL" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739">Variable '${Popial_Base_Url}' not found.</status>
+</test>
+<test id="s1-t12" name="case12:Email field with special char" line="169">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>post_01</arg>
+<arg>${Popial_Base_Url}</arg>
+<arg>verify=${TRUE}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231101 20:11:21.739" level="FAIL">Variable '${Popial_Base_Url}' not found.</msg>
+<status status="FAIL" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>username=@#$%^&amp;*(*&amp;@@heterodrugs.com</arg>
+<arg>password=Altius@123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>post_01</arg>
+<arg>/mah/api/principle_database/mah-login</arg>
+<arg>data=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<msg timestamp="20231101 20:11:21.739" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>400</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>false</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>please provide correct email.</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739"/>
+</kw>
+<status status="FAIL" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.739">Variable '${Popial_Base_Url}' not found.</status>
+</test>
+<test id="s1-t13" name="case13:Email id should not be a case sensitive" line="183">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>post_01</arg>
+<arg>${Popial_Base_Url}</arg>
+<arg>verify=${TRUE}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231101 20:11:21.749" level="FAIL">Variable '${Popial_Base_Url}' not found.</msg>
+<status status="FAIL" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.749"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>USERNAME=KEERTHISAGAR.A@HETERODRUGS.COM PASSWORD=Altius@123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.749"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.749"/>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>post_01</arg>
+<arg>/mah/api/principle_database/mah-login</arg>
+<arg>data=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<msg timestamp="20231101 20:11:21.749" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<status status="NOT RUN" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.749"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.749"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.749"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.749"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>200</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.749"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.749"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>true</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.749"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>Sign in Succesfull!</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.749"/>
+</kw>
+<status status="FAIL" starttime="20231101 20:11:21.739" endtime="20231101 20:11:21.749">Variable '${Popial_Base_Url}' not found.</status>
+</test>
+<test id="s1-t14" name="case14:With unregistered credentials(Email and password)" line="197">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>post_01</arg>
+<arg>${Popial_Base_Url}</arg>
+<arg>verify=${TRUE}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231101 20:11:21.749" level="FAIL">Variable '${Popial_Base_Url}' not found.</msg>
+<status status="FAIL" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.749"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>email=shilpa.badigi12@terralogic.com</arg>
+<arg>password=Intyent!01</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.749"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.749"/>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>post_01</arg>
+<arg>/mah/api/principle_database/mah-login</arg>
+<arg>data=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<msg timestamp="20231101 20:11:21.749" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<status status="NOT RUN" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.749"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.749"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.749"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.749"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>401</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.749"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.749"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>false</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.749"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>User does not exist</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20231101 20:11:21.754" endtime="20231101 20:11:21.754"/>
+</kw>
+<status status="FAIL" starttime="20231101 20:11:21.749" endtime="20231101 20:11:21.754">Variable '${Popial_Base_Url}' not found.</status>
+</test>
+<status status="FAIL" starttime="20231101 20:11:20.759" endtime="20231101 20:11:21.754"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="13" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="13" skip="0" id="s1" name="MAH Login API">MAH Login API</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20231101 20:11:21.029" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg timestamp="20231101 20:11:21.699" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+<msg timestamp="20231101 20:11:21.706" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg timestamp="20231101 20:11:21.709" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg timestamp="20231101 20:11:21.709" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg timestamp="20231101 20:11:21.722" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg timestamp="20231101 20:11:21.729" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg timestamp="20231101 20:11:21.729" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg timestamp="20231101 20:11:21.729" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg timestamp="20231101 20:11:21.739" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg timestamp="20231101 20:11:21.739" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg timestamp="20231101 20:11:21.739" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg timestamp="20231101 20:11:21.749" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg timestamp="20231101 20:11:21.749" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+</errors>
+</robot>
